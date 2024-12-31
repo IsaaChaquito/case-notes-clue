@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { DarkLightIcon } from '../assets/icons'
 export const DarkModeButton = () => {
   const [theme, setTheme] = useState(
     localStorage.getItem('theme') || 'light'
@@ -22,9 +23,10 @@ export const DarkModeButton = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="hover:bg-gray-300 dark:hover:bg-gray-900 p-2 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white duration-150"
+      className="hover:bg-gray-300 dark:hover:bg-gray-900 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white duration-150"
     >
-      {theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+
+<DarkLightIcon className='w-7 h-7 text-white bg-black dark:text-black dark:bg-white rounded p-1 ' />
     </button>
   );
 }

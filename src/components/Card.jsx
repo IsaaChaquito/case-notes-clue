@@ -2,7 +2,7 @@
 
 export const Card = () => {
   return (
-    <div className="CARD max-w-[400px] w-full sm:w-full h-screen rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white border-2 border-black/60 dark:border-transparent flex flex-col overflow-hidden">
+    <div className="CARD max-w-[400px] w-full sm:w-full h-screen sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col overflow-hidden">
       
       <section className="SUSPECTS w-full h-full">
         <h2 className="w-full text-center font-semibold bg-black/60 dark:bg-gray-700 p-1">Suspects</h2>
