@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {CheckOption} from "../components"
+import {CheckOption, Row} from "../components"
 
 const options = ["check", "close", "question", "exclamation", "check-box"]
 
@@ -8,29 +8,48 @@ export const Card = ({ numberOfPlayers = 6 }) => {
   const [names, setNames] = useState([])
 
   return (
-    <div className="CARD max-w-[400px] w-full sm:w-full h-screen sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col overflow-hidden">
+    <div className="CARD max-w-[400px] w-full sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col overflow-hidden">
       
-      <section className="SUSPECTS w-full h-full">
-        <h2 className="w-full text-center font-semibold bg-black/60 dark:bg-gray-700 p-1">Suspects</h2>
+      <section className="SUSPECTS w-full h-auto">
+        <h2 className="w-full text-center font-semibold bg-black/60 dark:bg-gray-700 p-1">
+          Sospechosos
+        </h2>
 
-        <div className="CLUE-SUSPECTS h-7 flex items-center">
-          <h1 className="w-[30%] h-full bg-yellow-500 p-1 ">Mostaza</h1>
-          {
-            Array.from({  length: numberOfPlayers }).map((_, index) => (
-              <CheckOption key={index} />
-            ))
-          }
-        </div>
+        <Row label="Verduzco" labelColor="bg-green-500" numberOfOptions={numberOfPlayers} />
+        <Row label="Mostaza" labelColor="bg-yellow-500" numberOfOptions={numberOfPlayers} />
+        <Row label="Marlene" labelColor="bg-blue-500" numberOfOptions={numberOfPlayers} />
+        <Row label="Moradillo" labelColor="bg-purple-600" numberOfOptions={numberOfPlayers} />
+        <Row label="Escarlata" labelColor="bg-red-600" numberOfOptions={numberOfPlayers} />
+        <Row label="Blanca" labelColor="bg-white text-black" numberOfOptions={numberOfPlayers} />
       </section>
 
-      <section className="WEAPONS bg-blue-400 w-full h-full">
-      <h2 className="w-full text-center font-bold">Weapons</h2>
-        <div className="CLUE-WEAPON min-h-full">Weapon</div>
+      <section className="SUSPECTS w-full h-auto">
+        <h2 className="w-full text-center font-semibold bg-black/60 dark:bg-gray-700 p-1">
+          Armas
+        </h2>
+
+        <Row labelColor="bg-white" label="Candelabro" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Daga" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Tubo de plomo" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Revólver" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Soga" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Llave inglesa" numberOfOptions={numberOfPlayers} />
       </section>
 
-      <section className="ROOMS bg-blue-500 w-full h-full">
-      <h2 className="w-full text-center font-bold">Rooms</h2>
-        <div className="CLUE-ROOM min-h-full">Room</div>
+      <section className="SUSPECTS w-full h-auto">
+        <h2 className="w-full text-center font-semibold bg-black/60 dark:bg-gray-700 p-1">
+          Lugares
+        </h2>
+
+        <Row labelColor="bg-white" label="Salón de baile" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Sala de billar" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Terraza" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Comedor" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Pasillo" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Cocina" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Biblioteca" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Sala" numberOfOptions={numberOfPlayers} />
+        <Row labelColor="bg-white" label="Estudio" numberOfOptions={numberOfPlayers} />
       </section>
     </div>
   )
