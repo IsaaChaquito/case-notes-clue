@@ -2,8 +2,11 @@
 import './App.css'
 import { DarkModeButton, Card } from './components'
 import { LogoClueIcon } from './assets/icons'
+import { useState } from 'react'
 
 function App() {
+
+  const [numberOfPlayers, setnumberOfPlayers] = useState(6)
 
   return (
     <div className="sm:min-w-screen sm:min-h-screen bg-white dark:bg-black/70 flex flex-col items-center gap-y-1">
@@ -13,7 +16,9 @@ function App() {
         <DarkModeButton /> 
       </div>
 
-      <Card />
+      <Card 
+        numberOfPlayers={numberOfPlayers}
+      />
 
     </div>
   )
