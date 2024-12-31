@@ -34,45 +34,15 @@ export const CheckOption = (  ) => {
             className="w-full h-full text-gray-500 hover:scale-125 duration-150" />
   }
 
-  // const alternateShowOptions = () => {
-  //   console.log('you click me mf');
-  //   setState( state => ({
-  //       ...state,
-  //       showOptions: !state.showOptions
-  //     }))
-  // }
-
   const alternateShowOptions = () => {
-    setState((prev) => {
-      const newState = { ...prev, showOptions: !prev.showOptions };
+    console.log('you click me mf');
+    setState( state => ({
+        ...state,
+        showOptions: !state.showOptions
+      }))
+  }
 
-      if (newState.showOptions && optionsRef.current) {
-        const optionsElement = optionsRef.current;
-        const bounding = optionsElement.getBoundingClientRect();
-        const screenWidth = window.innerWidth;
 
-        let left = bounding.left;
-        let translateX = '-50%';
-
-        // Asegurar que la lista no se salga por la izquierda
-        if (bounding.left < 0) {
-          left = 0;
-          translateX = '0';
-        }
-
-        // Asegurar que la lista no se salga por la derecha
-        if (bounding.right > screenWidth) {
-          left = screenWidth - bounding.width;
-          translateX = '0';
-        }
-
-        optionsElement.style.left = `${left}px`;
-        optionsElement.style.transform = `translateX(${translateX})`;
-      }
-
-      return newState;
-    });
-  };
 
   const selectOption = (option) => {
     console.log('clicked ', option);
@@ -100,10 +70,10 @@ export const CheckOption = (  ) => {
         state.showOptions && (
           <div 
             ref={optionsRef}
-            className='OPTIONS z-20 absolute -top-[1.9rem] left-1/2 -translate-x-1/2 w-24 dark:bg-white bg-black rounded-full flex justify-center items-center p-1 pointer-events-none'>
+            className='OPTIONS z-20 absolute -top-[1.5rem] left-1/2 -translate-x-1/2 w-24 dark:bg-white bg-black rounded-full flex justify-center items-center p-1 pointer-events-none'>
             {
               Object.keys(options).map((option) => (
-              <div key={option} className=" pointer-events-auto">
+              <div key={option} className="w-5 h-4 pointer-events-auto">
                 {options[option]}
               </div>
             ))}
@@ -115,3 +85,5 @@ export const CheckOption = (  ) => {
 }
 
 export default CheckOption
+
+
