@@ -23,7 +23,7 @@ export const DarkModeButton = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="hover:bg-gray-300 dark:hover:bg-gray-900 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white duration-150"
+      className=""
     >
 
 <DarkLightIcon className='w-7 h-7 text-white bg-black dark:text-black dark:bg-white rounded p-1 ' />

@@ -3,7 +3,7 @@ import {CheckOption} from "../components"
 
 const options = ["check", "close", "question", "exclamation", "check-box"]
 
-export const Card = ({ numberOfPlayers }) => {
+export const Card = ({ numberOfPlayers = 6 }) => {
 
   const [names, setNames] = useState([])
 
