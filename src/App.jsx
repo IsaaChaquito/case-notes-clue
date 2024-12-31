@@ -1,15 +1,17 @@
 
 import './App.css'
-import Card from './components/Card'
+import { DarkModeButton, Card } from './components'
 
 function App() {
 
   return (
-    <div className="min-w-screen min-h-screen flex flex-col items-center">
+    <div className="sm:min-w-screen sm:min-h-screen bg-white dark:bg-black/70 flex flex-col items-center gap-y-1">
       {/* TODO: delete title */}
-      <h1 className="text-3xl font-bold p-2 bg-gray-200 text-center">
+      <h1 className="text-xl text-black dark:text-white font-bold p-2  text-center">
         Case Notes / Clue
       </h1>
+
+      <DarkModeButton />
 
       <Card />
 
