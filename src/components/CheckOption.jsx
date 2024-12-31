@@ -55,9 +55,17 @@ export const CheckOption = (  ) => {
       alternateShowOptions()
   }
 
+  const closeOptions = () => {
+    setState( prevState => ({
+      ...prevState,
+      showOptions: false
+    }))
+  }
+
   return (
     <button 
       onClick={ alternateShowOptions }
+      onBlur={ closeOptions }
       className='relative w-full h-full flex justify-center items-center border-black/60 dark:border-white border-y border-r last:border-r-0'
     >
       <div 
