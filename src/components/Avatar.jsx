@@ -50,7 +50,7 @@ export const Avatar = ({ index }) => {
       >
         {color.map((_, idx) => (
           <option className="z-50" key={idx} value={idx}>
-            {colorNames[idx] + " " + idx}
+            {colorNames[idx]}
           </option>
         ))}
       </select>
