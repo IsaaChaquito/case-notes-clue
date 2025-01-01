@@ -80,7 +80,7 @@ export const CheckOption = (  ) => {
         state.showOptions && (
           <div 
             ref={optionsRef}
-            className='OPTIONS z-20 absolute -top-[1.5rem] left-1/2 -translate-x-1/2 w-24 dark:bg-white bg-black rounded-full flex justify-center items-center p-1 pointer-events-none'>
+            className='OPTIONS z-20 absolute -top-[1.5rem] left-1/2 -translate-x-1/2 w-6 dark:bg-white bg-black rounded-full flex flex-col justify-center items-center p-1 pointer-events-none'>
             {
               Object.keys(options).map((option) => (
               <div key={option} className="w-5 h-4 pointer-events-auto">
