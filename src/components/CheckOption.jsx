@@ -66,12 +66,14 @@ export const CheckOption = (  ) => {
     <button 
       onClick={ alternateShowOptions }
       onBlur={ closeOptions }
-      className='relative w-full h-full flex justify-center items-center border-black/60 dark:border-white border-y border-r last:border-r-0'
+      className='relative w-full h-full flex justify-center items-center border-black/60 dark:border-white border-yy border-r-2 border-b-2'
     >
       <div 
         className="w-7 h-full bg-transparent text-black flex justify-center items-center pointer-events-none"
       >
-        {options[state.selectedOption]}
+        {
+          state.selectedOption !== 'void' && options[state.selectedOption]
+        }
       </div>
 
       {

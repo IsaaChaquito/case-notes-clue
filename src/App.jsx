@@ -22,6 +22,7 @@ function App() {
 
         <select 
           onChange={handleNumberOfPlayers} 
+          value={numberOfPlayers}
           className='w-9.5 h-7 text-white bg-black dark:text-black dark:bg-white rounded outline-none'
         >
           {
