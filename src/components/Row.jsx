@@ -12,7 +12,6 @@ export const Row = (
 
   const labelStates = { 
     noUnderline: 'no-underline', 
-    underline: 'underline decoration-2' ,
     lineThrough: 'line-through decoration-8'
   }
 
@@ -21,11 +20,9 @@ export const Row = (
   const alternateUnderline = () => {
     if (labelState === labelStates.noUnderline) {
       setLabelState(labelStates.lineThrough)
-    } else if (labelState === labelStates.lineThrough) {
-      setLabelState(labelStates.underline)
-    } else if (labelState === labelStates.underline) {
+    } else {
       setLabelState(labelStates.noUnderline)
-    }
+    } 
   }
 
   return (
