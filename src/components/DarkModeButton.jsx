@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { DarkLightIcon } from '../assets/icons'
 export const DarkModeButton = () => {
   const [theme, setTheme] = useState(
-    localStorage.getItem('theme') || 'light'
+    localStorage.getItem('theme') || 'dark'
   );
 
   useEffect(() => {
