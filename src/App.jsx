@@ -17,10 +17,6 @@ function App() {
   return (
     <div className="sm:min-w-screen min-h-screen bg-white dark:bg-black flex flex-col items-center gap-y-1">
 
-      <Card 
-        numberOfPlayers={numberOfPlayers}
-      />
-
       <div className='flex justify-between items-center m-1 gap-x-2'>
         <LogoClueIcon className='w-36 h-14 text-black dark:text-white' />
 
@@ -37,6 +33,10 @@ function App() {
         </select>
         <DarkModeButton /> 
       </div>
+
+      <Card 
+        numberOfPlayers={numberOfPlayers}
+      />
 
     </div>
   )
