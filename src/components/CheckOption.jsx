@@ -31,7 +31,7 @@ export const CheckOption = (  ) => {
     void: <CheckboxIcon
             key="void"
             onClick={ () => selectOption('void') } 
-            className="w-full h-full text-gray-500 rounded-full bg-white dark:bg-black hover:scale-125 duration-150 " />
+            className="w-full h-full text-gray-500 rounded-full bg-white dark:bg-black hover:scale-125 duration-150 p-0.5" />
   }
 
   const alternateShowOptions = () => {
