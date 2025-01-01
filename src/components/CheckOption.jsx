@@ -15,23 +15,23 @@ export const CheckOption = (  ) => {
     check: <CheckIcon 
               key="check"
               onClick={ () => selectOption('check') }
-              className="w-full h-full text-green-500 hover:scale-125 duration-150" 
+              className="w-full h-full text-green-500 bg-white dark:bg-black hover:scale-125 duration-150 rounded-full " 
             />,
 
     close: <CloseIcon 
               key="close"
               onClick={ () => selectOption('close') } 
-              className="w-full h-full text-red-500 hover:scale-125 duration-150" />,
+              className="w-full h-full text-red-500 bg-white dark:bg-black rounded-full hover:scale-125 duration-150" />,
 
     question: <QuestionMarkIcon 
                 key="question"
                 onClick={ () => selectOption('question') } 
-                className="w-full h-full text-yellow-500 hover:scale-125 duration-150" />,
+                className="w-full h-full text-yellow-500 rounded-full bg-white dark:bg-black hover:scale-125 duration-150" />,
 
     void: <CheckboxIcon
             key="void"
             onClick={ () => selectOption('void') } 
-            className="w-full h-full text-gray-500 hover:scale-125 duration-150" />
+            className="w-full h-full text-gray-500 rounded-full bg-white dark:bg-black hover:scale-125 duration-150 " />
   }
 
   const alternateShowOptions = () => {
@@ -80,10 +80,10 @@ export const CheckOption = (  ) => {
         state.showOptions && (
           <div 
             ref={optionsRef}
-            className='OPTIONS z-50 absolute -top-[1.5rem] left-1/2 -translate-x-1/2 w-7 h-24 dark:bg-white bg-black rounded-full flex flex-col justify-center items-center p-1 pointer-events-none'>
+            className='OPTIONS border dark:border-gray-700 shadow-sm z-50 absolute -top-[1.5rem]l top-0 left-1/2 -translate-x-1/2 w-[26px] h-24 bg-white dark:bg-gray-700  rounded-full flex flex-col justify-center items-center gap-0.5 p-1 pointer-events-none'>
             {
               Object.keys(options).map((option) => (
-              <div key={option} className="w-5 h-7 pointer-events-auto">
+              <div key={option} className="w-5 h-7 pointer-events-auto ">
                 {options[option]}
               </div>
             ))}
