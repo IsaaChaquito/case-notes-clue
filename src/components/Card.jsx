@@ -14,7 +14,11 @@ export const Card = ({ numberOfPlayers = 6 }) => {
           Sospechosos
         </h2>
 
-        <Row label="Verduzco" labelColor="border-x-2 border-b-2 border-gray-700 text-green-500" numberOfOptions={numberOfPlayers} />
+        <Row 
+          label="Verduzco" 
+          labelColor="border-x-2 border-b-2 border-gray-700 text-green-500" 
+          numberOfOptions={numberOfPlayers} 
+        />
         <Row label="Mostaza" labelColor="border-x-2 border-b-2 border-gray-700 text-yellow-500" numberOfOptions={numberOfPlayers} />
         <Row label="Marlene" labelColor="border-x-2 border-b-2 border-gray-700 text-blue-500" numberOfOptions={numberOfPlayers} />
         <Row label="Moradillo" labelColor="border-x-2 border-b-2 border-gray-700 text-purple-500" numberOfOptions={numberOfPlayers} />
