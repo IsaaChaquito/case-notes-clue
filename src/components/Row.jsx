@@ -1,4 +1,4 @@
-import React from 'react'
+
 import CheckOption from './CheckOption'
 
 export const Row = (

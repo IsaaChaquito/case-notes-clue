@@ -1,7 +1,6 @@
 import { useState } from "react"
-import {CheckOption, Row} from "../components"
+import { Row } from "../components"
 
-const options = ["check", "close", "question", "exclamation", "check-box"]
 
 export const Card = ({ numberOfPlayers = 6 }) => {
 

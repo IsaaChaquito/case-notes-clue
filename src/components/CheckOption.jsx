@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { CheckIcon, CloseIcon, QuestionMarkIcon, CheckboxIcon } from '../assets/icons'
+import { CheckIcon, CloseIcon, QuestionMarkIcon } from '../assets/icons'
 
 export const CheckOption = (  ) => {
 
@@ -27,11 +27,6 @@ export const CheckOption = (  ) => {
                 key="question"
                 onClick={ () => selectOption('question') } 
                 className="w-full h-full text-yellow-500 hover:scale-125 duration-150" />,
-
-    void: <CheckboxIcon
-            key="void"
-            onClick={ () => selectOption('void') } 
-            className="w-full h-full text-gray-500 hover:scale-125 duration-150" />
   }
 
   const alternateShowOptions = () => {
