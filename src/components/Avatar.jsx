@@ -21,13 +21,16 @@ export const colorNames = [
 export const Avatar = ({ index }) => {
   const [avatarColorIndex, setAvatarColorIndex] = useState(index);
 
-  const handleColor = (e) => {
-    const newIndex = parseInt(e.target.value, 10); // Convertir a número
-    setAvatarColorIndex(newIndex);
+  const alternateColor = () => {
+    setAvatarColorIndex((prevIndex) => 
+      prevIndex + 1 > color.length-1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
-    <div className="relative w-full flex items-center justify-center border-l-2 border-b-2 border-gray-700">
+    <button 
+      onClick={alternateColor}
+      className="relative w-full flex items-center justify-center border-l-2 border-b-2 border-gray-700">
       <div className="relative w-8 h-8 overflow-hidden shadow-sm shadow-black rounded-full dark:bg-black">
         <svg
           fill="#374151" // Color blanco para el avatar123"
@@ -43,7 +46,7 @@ export const Avatar = ({ index }) => {
         </svg>
       </div>
 
-      <select
+      {/* <select
         className="absolute top-0 left-0 w-full h-full opacity-0 dark:bg-black "
         value={avatarColorIndex} // Usar índice aquí
         onChange={handleColor}
@@ -53,8 +56,8 @@ export const Avatar = ({ index }) => {
             {colorNames[idx]}
           </option>
         ))}
-      </select>
-    </div>
+      </select> */}
+    </button>
   );
 };
 
