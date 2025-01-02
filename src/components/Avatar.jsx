@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CheckIcon } from "../assets/icons";
 
 export const color = [
   "bg-green-500",
@@ -18,7 +19,8 @@ export const colorNames = [
   "Blanca",
 ];
 
-export const Avatar = ({ index }) => {
+export const Avatar = ({ index, cluesPerPlayer = 3 }) => {
+
   const [avatarColorIndex, setAvatarColorIndex] = useState(index);
 
   const alternateColor = () => {
@@ -30,7 +32,7 @@ export const Avatar = ({ index }) => {
   return (
     <button 
       onClick={alternateColor}
-      className="relative w-full flex items-center justify-center border-l-2 border-b-2 border-gray-700">
+      className="relative w-full flex flex-col items-center justify-center border-l-2 border-b-2 border-gray-700">
       <div className="relative w-8 h-8 overflow-hidden shadow-sm shadow-black rounded-full dark:bg-black">
         <svg
           fill="#374151" // Color blanco para el avatar123"
@@ -46,17 +48,15 @@ export const Avatar = ({ index }) => {
         </svg>
       </div>
 
-      {/* <select
-        className="absolute top-0 left-0 w-full h-full opacity-0 dark:bg-black "
-        value={avatarColorIndex} // Usar índice aquí
-        onChange={handleColor}
-      >
-        {color.map((_, idx) => (
-          <option className="z-50" key={idx} value={idx}>
-            {colorNames[idx]}
-          </option>
+      <section className="NUMBER-OF-CLUES flex items-center justify-center">
+        {Array.from({length: cluesPerPlayer}).map((_, index) => (
+          <CheckIcon 
+            key={index}
+            className="w-full h-full text-gray-500 bg-white dark:bg-black rounded-full" 
+          />
         ))}
-      </select> */}
+      </section>
+
     </button>
   );
 };

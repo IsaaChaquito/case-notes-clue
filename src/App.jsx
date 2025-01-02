@@ -1,18 +1,24 @@
 
 import './App.css'
-import { DarkModeButton, Card } from './components'
+import { DarkModeButton, Card, Select } from './components'
 import { LogoClueIcon } from './assets/icons'
 import { useEffect, useState } from 'react'
 
 function App() {
 
   const MAX_PLAYERS = 6
+  const MAX_CLUES = 5
 
   const [numberOfPlayers, setnumberOfPlayers] = useState(6)
+  const [cluesPerPlayer, setcluesPerPlayer] = useState(3)
 
   const handleNumberOfPlayers = (e) => {
     setnumberOfPlayers(e.target.value)
   }
+
+  const handleCluesPerPlayer = (e) => {
+    setcluesPerPlayer(e.target.value)
+  } 
 
 
   {/* Evitar recargrar la página */}
@@ -44,22 +50,26 @@ function App() {
       <div className='flex justify-between items-center m-1 gap-x-2'>
         <LogoClueIcon className='w-36 h-14 text-black dark:text-white' />
 
-        <select 
-          onChange={handleNumberOfPlayers} 
-          value={numberOfPlayers}
-          className='w-9.5 h-7 text-white bg-black dark:text-black dark:bg-white rounded outline-none'
-        >
-          {
-            Array.from({  length: MAX_PLAYERS }).map((_, index) => (
-              <option key={index} value={index + 1} >{index + 1}</option>
-            ))
-          }
-        </select>
+        <Select 
+          title="Jugadores" 
+          numberOfItems={numberOfPlayers} 
+          MAX_ITEMS={MAX_PLAYERS} 
+          handler={handleNumberOfPlayers} 
+        />
+
+        <Select 
+          title="Clues" 
+          numberOfItems={cluesPerPlayer} 
+          MAX_ITEMS={MAX_CLUES} 
+          handler={handleCluesPerPlayer} 
+        />
+
         <DarkModeButton /> 
       </div>
 
       <Card 
         numberOfPlayers={numberOfPlayers}
+        cluesPerPlayer={cluesPerPlayer}
       />
 
     </div>

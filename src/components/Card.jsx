@@ -1,8 +1,58 @@
 
-import { Row, Avatares } from "../components"
+import { useEffect, useState } from "react"
+import { Row , Avatares, Rows } from "../components"
 
-export const Card = ({ numberOfPlayers = 6 }) => {
+export const cardObject = ( cols ) => {
+  return {
+    cols: Array.from({ length: cols }).map((_) => {
+      return {
+        rows: Array.from({ length: 21 }).map((_) => {
+          return {
+            iconTypeIndex: 0,
+          }
+        }),
+      }
+    })
+  }
+}
 
+export const suspects = [
+  "Verduzco",
+  "Mostaza",
+  "Marlene",
+  "Moradillo",
+  "Escarlata",
+  "Blanca",
+]
+
+export const weapons = [
+  "Candelabro",
+  "Daga",
+  "Tubo de plomo",
+  "Revólver",
+  "Soga",
+  "Llave inglesa",
+]
+
+export const places = [
+  "Salón de baile",
+  "Sala de billar",
+  "Terraza",
+  "Comedor",
+  "Pasillo",
+  "Cocina",
+  "Biblioteca",
+  "Sala",
+  "Estudio",
+]
+
+export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
+
+  const [cardState, setCardState] = useState( cardObject(numberOfPlayers) )
+
+  useEffect(() => {
+    console.log('cardState', cardState);
+  }, [])
 
   return (
     <div className="CARD max-w-[400px] w-full mb-20 sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col ">
@@ -12,19 +62,19 @@ export const Card = ({ numberOfPlayers = 6 }) => {
           Sospechosos y jugadores
         </h2>
         <section className="AVATARES w-full  pl-[108px] border-l-2 border-gray-700">
-          <Avatares numberOfPlayers={numberOfPlayers} />
+          <Avatares 
+            numberOfPlayers={numberOfPlayers} 
+            cluesPerPlayer={cluesPerPlayer}  
+          />
         </section>
-
-        <Row 
-          label="Verduzco" 
-          labelColor="border-x-2 border-b-2 border-gray-700 text-green-500" 
-          numberOfOptions={numberOfPlayers} 
+        {/* Nombre de personajes */}
+        <Rows 
+          cardState={cardState} 
+          setCardState={setCardState} 
+          labels={suspects} 
+          numberOfPlayers={numberOfPlayers}
+          section="suspects"
         />
-        <Row label="Mostaza" labelColor="border-x-2 border-b-2 border-gray-700 text-yellow-500" numberOfOptions={numberOfPlayers} />
-        <Row label="Marlene" labelColor="border-x-2 border-b-2 border-gray-700 text-blue-500" numberOfOptions={numberOfPlayers} />
-        <Row label="Moradillo" labelColor="border-x-2 border-b-2 border-gray-700 text-purple-500" numberOfOptions={numberOfPlayers} />
-        <Row label="Escarlata" labelColor="border-x-2 border-b-2 border-gray-700 text-red-500" numberOfOptions={numberOfPlayers} />
-        <Row label="Blanca" labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" numberOfOptions={numberOfPlayers} />
       </section>
 
       <section className="SUSPECTS w-full h-auto">
@@ -32,12 +82,13 @@ export const Card = ({ numberOfPlayers = 6 }) => {
           Armas
         </h2>
 
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Candelabro" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Daga" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Tubo de plomo" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Revólver" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Soga" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Llave inglesa" numberOfOptions={numberOfPlayers} />
+        <Rows 
+          cardState={cardState} 
+          setCardState={setCardState} 
+          labels={weapons} 
+          numberOfPlayers={numberOfPlayers}
+          section="weapons"
+        />
       </section>
 
       <section className="SUSPECTS w-full h-auto">
@@ -45,15 +96,13 @@ export const Card = ({ numberOfPlayers = 6 }) => {
           Lugares
         </h2>
 
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Salón de baile" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Sala de billar" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Terraza" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Comedor" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Pasillo" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Cocina" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Biblioteca" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Sala" numberOfOptions={numberOfPlayers} />
-        <Row labelColor="border-x-2 border-b-2 border-gray-700 text-black dark:text-white" label="Estudio" numberOfOptions={numberOfPlayers} />
+        <Rows 
+          cardState={cardState} 
+          setCardState={setCardState} 
+          labels={places} 
+          numberOfPlayers={numberOfPlayers}
+          section="places"
+        />
       </section>
     </div>
   )

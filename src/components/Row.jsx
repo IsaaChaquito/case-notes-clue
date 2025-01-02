@@ -7,6 +7,8 @@ export const Row = (
     label = "Nombre",
     labelColor = "bg-transparent",
     numberOfOptions = 6,
+    cardState,
+    setCardState
   }
 ) => {
 
@@ -21,7 +23,7 @@ export const Row = (
       </h1>
       {
         Array.from({  length: numberOfOptions }).map((_, index) => (
-          <CheckOption key={index} />
+          <CheckOption key={index} cardState={cardState} setCardState={setCardState} index={index}/>
         ))
       }
     </div>

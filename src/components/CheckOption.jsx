@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CheckIcon, CloseIcon, QuestionMarkIcon } from '../assets/icons'
 
-export const CheckOption = () => {
+export const CheckOption = ({ cardState, setCardState, index }) => {
 
   const [selectedOption, setSelectedOption] = useState(0)
 
@@ -29,6 +29,17 @@ export const CheckOption = () => {
       (prevState + 1) > 3 ? 0 : prevState + 1
     ))
   }
+
+  useEffect(() => {
+    // cardState[index] = selectedOption
+
+    // setCardState( prevState => ({
+    //   ...prevState,
+    //   [index][index]: selectedOption
+    // }))
+
+
+  }, [selectedOption])
 
   return (
     <button 
