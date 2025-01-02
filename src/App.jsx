@@ -2,7 +2,7 @@
 import './App.css'
 import { DarkModeButton, Card } from './components'
 import { LogoClueIcon } from './assets/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
 
@@ -13,6 +13,30 @@ function App() {
   const handleNumberOfPlayers = (e) => {
     setnumberOfPlayers(e.target.value)
   }
+
+
+  {/* Evitar recargrar la página */}
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      // Mostrar un mensaje de confirmación al usuario
+      const confirmationMessage = "¿Estás seguro de que quieres recargar la página? Podrías perder los cambios.";
+      const userConfirmed = window.confirm(confirmationMessage);
+
+      // Si el usuario cancela, prevenir la recarga
+      if (!userConfirmed) {
+        event.preventDefault();
+        return '';
+      }
+    };
+
+    // Agregar el evento cuando el componente se monta
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // Eliminar el evento cuando el componente se desmonta
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <div className="sm:min-w-screen min-h-screen bg-white dark:bg-black flex flex-col items-center gap-y-1">
