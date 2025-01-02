@@ -50,13 +50,38 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
   const [cardState, setCardState] = useState( cardObject(numberOfPlayers) )
 
-  const handleCheckOptionState = (row, col, iconTypeIndex) => {
-    console.log('row', row, 'col', col, 'iconTypeIndex', iconTypeIndex);
-  }
+  const handleCheckOptionState = (rowIndex, colIndex, iconTypeIndex) => {
+    console.log('colIndex', colIndex, 'row', rowIndex, 'icon', iconTypeIndex);
+    setCardState((prevState) => {
+      // Copiamos el estado anterior
+      const newCols = [...prevState.cols];
+  
+      // Actualizamos solo la columna especificada
+      const columnToUpdate = newCols[colIndex];
+  
+      // Actualizamos solo la fila especificada
+      const updatedRows = [...columnToUpdate.rows];
+      updatedRows[rowIndex] = {
+        ...updatedRows[rowIndex],
+        iconTypeIndex, // Actualizamos el iconTypeIndex
+      };
+  
+      // Actualizamos las filas de la columna
+      newCols[colIndex] = {
+        ...columnToUpdate,
+        rows: updatedRows,
+      };
+  
+      return {
+        ...prevState,
+        cols: newCols, // Retornamos las columnas actualizadas
+      };
+    });
+  };
 
   useEffect(() => {
     console.log('cardState', cardState);
-  }, [])
+  }, [cardState])
 
   return (
     <div className="CARD max-w-[400px] w-full mb-20 sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col ">

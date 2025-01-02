@@ -34,12 +34,13 @@ const stylesFor = {
 
 export const Rows = ({cardState, handleCheckOptionState, labels, numberOfPlayers, section}) => {
 
+  const acumulator = section === "suspects" ? 0 : section === "weapons" ? 6 : 12
 
   return (
     Array.from({ length: labels.length }).map((_, index) => (
       <Row 
         key={index} 
-        rowIndex={index}
+        rowIndex={index + acumulator}
         cardState={cardState} 
         handleCheckOptionState={handleCheckOptionState} 
         label={labels[index]} 
