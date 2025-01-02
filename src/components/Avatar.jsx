@@ -27,7 +27,7 @@ export const Avatar = ({ index }) => {
   };
 
   return (
-    <div className="relative w-full flex items-center justify-center">
+    <div className="relative w-full flex items-center justify-center border-l-2 border-b-2 border-gray-700">
       <div className="relative w-8 h-8 overflow-hidden shadow-sm shadow-black rounded-full dark:bg-black">
         <svg
           fill="#374151" // Color blanco para el avatar123"

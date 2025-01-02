@@ -1,22 +1,19 @@
-import { useState } from "react"
-import { Row, Avatares } from "../components"
 
+import { Row, Avatares } from "../components"
 
 export const Card = ({ numberOfPlayers = 6 }) => {
 
-  const [names, setNames] = useState([])
 
   return (
     <div className="CARD max-w-[400px] w-full mb-20 sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col ">
-
-      <section className="AVATARES w-full  pl-[115px]">
-        <Avatares numberOfPlayers={numberOfPlayers} />
-      </section>
       
       <section className="SUSPECTS w-full h-auto">
         <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-1">
-          Sospechosos
+          Sospechosos y jugadores
         </h2>
+        <section className="AVATARES w-full  pl-[108px] border-l-2 border-gray-700">
+          <Avatares numberOfPlayers={numberOfPlayers} />
+        </section>
 
         <Row 
           label="Verduzco" 
