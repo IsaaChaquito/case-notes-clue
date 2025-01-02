@@ -16,7 +16,7 @@ export const Row = (
     <div className="CLUE-SUSPECTS h-7 flex items-center select-none">
       <h1 
         onClick={ () => setLabelLineThrough(!labelLineThrough) }
-        className={`min-w-28 h-full text-black text-sm text-nowrap text-center cursor-pointer  ${labelColor} ${labelLineThrough ? 'line-through decoration-2' : 'no-underline'} p-1 `}>
+        className={`min-w-28 h-full text-black text-sm text-nowrap text-center cursor-pointer  ${labelColor} ${labelLineThrough ? 'line-through decoration-2 decoration-black dark:decoration-white' : 'no-underline'} p-1 `}>
         {label}
       </h1>
       {
