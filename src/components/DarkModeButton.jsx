@@ -26,7 +26,7 @@ export const DarkModeButton = () => {
       className=""
     >
 
-<DarkLightIcon className='w-7 h-7 text-white bg-black dark:text-black dark:bg-white rounded p-1 ' />
+<DarkLightIcon className='w-7 h-7 text-white bg-black dark:text-black dark:bg-white rounded p-1.5 ' />
     </button>
   );
 }
