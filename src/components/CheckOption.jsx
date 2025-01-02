@@ -1,95 +1,46 @@
-import { useRef, useState } from 'react'
-import { CheckIcon, CloseIcon, QuestionMarkIcon, CheckboxIcon } from '../assets/icons'
+import { useState } from 'react'
+import { CheckIcon, CloseIcon, QuestionMarkIcon } from '../assets/icons'
 
-export const CheckOption = (  ) => {
+export const CheckOption = () => {
 
-  const [state, setState] = useState({
-    showOptions: false,
-    selectedOption: "void"
-  })
+  const [selectedOption, setSelectedOption] = useState(0)
 
-  const optionsRef = useRef(null);
+  const options = [
+    null,
+    <CheckIcon 
+      key="check"
+      className="w-full h-full text-green-500 bg-white dark:bg-black hover:scale-125 duration-150 rounded-full " 
+    />,
+    <CloseIcon 
+      key="close"
+      className="w-full h-full text-red-500 bg-white dark:bg-black rounded-full hover:scale-125 duration-150" 
+    />,
 
-  const options = {
+    <QuestionMarkIcon 
+      key="question"
+      className="w-full h-full text-yellow-500 rounded-full bg-white dark:bg-black hover:scale-125 duration-150" 
+    />
+  ]
 
-    check: <CheckIcon 
-              key="check"
-              onClick={ () => selectOption('check') }
-              className="w-full h-full text-green-500 bg-white dark:bg-black hover:scale-125 duration-150 rounded-full " 
-            />,
-
-    close: <CloseIcon 
-              key="close"
-              onClick={ () => selectOption('close') } 
-              className="w-full h-full text-red-500 bg-white dark:bg-black rounded-full hover:scale-125 duration-150" />,
-
-    question: <QuestionMarkIcon 
-                key="question"
-                onClick={ () => selectOption('question') } 
-                className="w-full h-full text-yellow-500 rounded-full bg-white dark:bg-black hover:scale-125 duration-150" />,
-
-    void: <CheckboxIcon
-            key="void"
-            onClick={ () => selectOption('void') } 
-            className="w-full h-full text-gray-500 rounded-full bg-white dark:bg-black hover:scale-125 duration-150 p-0.5" />
-  }
-
-  const alternateShowOptions = () => {
-    console.log('you click me mf');
-    setState( state => ({
-        ...state,
-        showOptions: !state.showOptions
-      }))
-  }
-
-
-
-  const selectOption = (option) => {
-    console.log('clicked ', option);
-    setState( prevState =>({
-        ...prevState,
-        showOptions: false,
-        selectedOption: option
-      }))
-
-      alternateShowOptions()
-  }
-
-  const closeOptions = () => {
-    setState( prevState => ({
-      ...prevState,
-      showOptions: false
-    }))
+  const alternateOptions = () => {
+    setSelectedOption( prevState => (
+      (prevState + 1) > 3 ? 0 : prevState + 1
+    ))
   }
 
   return (
     <button 
-      onClick={ alternateShowOptions }
-      onBlur={ closeOptions }
+      onClick={ alternateOptions }
       className='relative w-full h-full flex justify-center items-center border-gray-700 border-yy border-r-2 border-b-2'
     >
       <div 
         className="w-7 h-full bg-transparent text-black flex justify-center items-center pointer-events-none"
       >
         {
-          state.selectedOption !== 'void' && options[state.selectedOption]
+          options[selectedOption]
         }
       </div>
 
-      {
-        state.showOptions && (
-          <div 
-            ref={optionsRef}
-            className='OPTIONS border dark:border-gray-700 shadow-sm z-50 absolute -top-[1.5rem]l top-0 left-1/2 -translate-x-1/2 w-[26px] h-24 bg-white dark:bg-gray-700  rounded-full flex flex-col justify-center items-center gap-0.5 p-1 pointer-events-none'>
-            {
-              Object.keys(options).map((option) => (
-              <div key={option} className="w-5 h-7 pointer-events-auto ">
-                {options[option]}
-              </div>
-            ))}
-          </div>
-        )
-      }
     </button>
   )
 }
