@@ -4,11 +4,12 @@ import CheckOption from './CheckOption'
 
 export const Row = (
   { 
+    rowIndex,
     label = "Nombre",
     labelColor = "bg-transparent",
     numberOfOptions = 6,
     cardState,
-    setCardState
+    handleCheckOptionState
   }
 ) => {
 
@@ -23,7 +24,7 @@ export const Row = (
       </h1>
       {
         Array.from({  length: numberOfOptions }).map((_, index) => (
-          <CheckOption key={index} cardState={cardState} setCardState={setCardState} index={index}/>
+          <CheckOption key={index} cardState={cardState} handleCheckOptionState={handleCheckOptionState} rowIndex={rowIndex} colIndex={index}/>
         ))
       }
     </div>

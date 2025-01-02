@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { CheckIcon, CloseIcon, QuestionMarkIcon } from '../assets/icons'
 
-export const CheckOption = ({ cardState, setCardState, index }) => {
+export const CheckOption = ({ cardState, handleCheckOptionState, rowIndex, colIndex }) => {
 
   const [selectedOption, setSelectedOption] = useState(0)
 
@@ -28,6 +28,8 @@ export const CheckOption = ({ cardState, setCardState, index }) => {
     setSelectedOption( prevState => (
       (prevState + 1) > 3 ? 0 : prevState + 1
     ))
+
+    handleCheckOptionState(rowIndex, colIndex, selectedOption)
   }
 
   useEffect(() => {

@@ -32,15 +32,16 @@ const stylesFor = {
   ],
 }
 
-export const Rows = ({cardState, setCardState, labels, numberOfPlayers, section}) => {
+export const Rows = ({cardState, handleCheckOptionState, labels, numberOfPlayers, section}) => {
 
 
   return (
     Array.from({ length: labels.length }).map((_, index) => (
       <Row 
         key={index} 
+        rowIndex={index}
         cardState={cardState} 
-        setCardState={setCardState} 
+        handleCheckOptionState={handleCheckOptionState} 
         label={labels[index]} 
         labelColor={stylesFor[section][index]} 
         numberOfOptions={numberOfPlayers} 

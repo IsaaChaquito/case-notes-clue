@@ -50,6 +50,10 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
   const [cardState, setCardState] = useState( cardObject(numberOfPlayers) )
 
+  const handleCheckOptionState = (row, col, iconTypeIndex) => {
+    console.log('row', row, 'col', col, 'iconTypeIndex', iconTypeIndex);
+  }
+
   useEffect(() => {
     console.log('cardState', cardState);
   }, [])
@@ -70,7 +74,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
         {/* Nombre de personajes */}
         <Rows 
           cardState={cardState} 
-          setCardState={setCardState} 
+          handleCheckOptionState={handleCheckOptionState} 
           labels={suspects} 
           numberOfPlayers={numberOfPlayers}
           section="suspects"
@@ -84,7 +88,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
         <Rows 
           cardState={cardState} 
-          setCardState={setCardState} 
+          handleCheckOptionState={handleCheckOptionState} 
           labels={weapons} 
           numberOfPlayers={numberOfPlayers}
           section="weapons"
@@ -98,7 +102,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
         <Rows 
           cardState={cardState} 
-          setCardState={setCardState} 
+          handleCheckOptionState={handleCheckOptionState} 
           labels={places} 
           numberOfPlayers={numberOfPlayers}
           section="places"
