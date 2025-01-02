@@ -6,7 +6,7 @@ export const color = [
   "bg-blue-500",
   "bg-purple-500",
   "bg-red-500",
-  "bg-white dark:bg-black",
+  "bg-white",
 ];
 
 export const colorNames = [
@@ -28,10 +28,10 @@ export const Avatar = ({ index }) => {
 
   return (
     <div className="relative w-full flex items-center justify-center">
-      <div className="relative w-8 h-8 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+      <div className="relative w-8 h-8 overflow-hidden shadow-sm shadow-black rounded-full dark:bg-black">
         <svg
+          fill="#374151" // Color blanco para el avatar123"
           className={`absolute w-10 h-10 ${color[avatarColorIndex]} -left-1`}
-          fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -44,7 +44,7 @@ export const Avatar = ({ index }) => {
       </div>
 
       <select
-        className="absolute top-0 left-0 w-full h-full opacity-0 dark:bg-black"
+        className="absolute top-0 left-0 w-full h-full opacity-0 dark:bg-black "
         value={avatarColorIndex} // Usar índice aquí
         onChange={handleColor}
       >
