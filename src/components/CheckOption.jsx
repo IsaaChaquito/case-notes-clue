@@ -7,18 +7,20 @@ export const CheckOption = () => {
 
   const options = [
     null,
+    
+    <CloseIcon 
+    key="close"
+    className="w-full h-full text-red-500 bg-white dark:bg-black rounded-full " 
+    />,
+    
+    <QuestionMarkIcon 
+    key="question"
+    className="w-full h-full text-yellow-500 rounded-full bg-white dark:bg-black " 
+    />,
+
     <CheckIcon 
       key="check"
       className="w-full h-full text-green-500 bg-white dark:bg-black  rounded-full " 
-    />,
-    <CloseIcon 
-      key="close"
-      className="w-full h-full text-red-500 bg-white dark:bg-black rounded-full " 
-    />,
-
-    <QuestionMarkIcon 
-      key="question"
-      className="w-full h-full text-yellow-500 rounded-full bg-white dark:bg-black " 
     />
   ]
 
