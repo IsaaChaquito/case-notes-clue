@@ -58,7 +58,7 @@ function App() {
         />
 
         <Select 
-          title="Clues" 
+          title="Pistas" 
           numberOfItems={cluesPerPlayer} 
           MAX_ITEMS={MAX_CLUES} 
           handler={handleCluesPerPlayer} 
