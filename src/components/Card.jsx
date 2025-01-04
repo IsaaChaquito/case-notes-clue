@@ -80,11 +80,20 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
     document.body.style.overflow = !isScrollLocked ? "hidden" : "";
     document.body.style.height = !isScrollLocked ? "100vh" : "";
   };
+  
 
+  function adjustHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  
+  window.addEventListener("resize", adjustHeight);
+  adjustHeight();
+  
 
 
   return (
-    <div className="CARD max-w-[400px] w-full mb-20 sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col ">
+    <div className={`CARD ${isScrollLocked ? 'locked' : ''} max-w-[400px] w-full mb-20 sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col `}>
       
       <section className="SUSPECTS w-full h-auto">
         <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-1">
@@ -92,7 +101,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
         </h2>
         <section className="AVATARES relative w-full  pl-[108px] border-l-2 border-gray-700">
           
-          <button onClick={toggleScrollLock} className={`absolute flex justify-center items-center left-11 top-0 bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ${isScrollLocked ? 'ring-inset' : ''} ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-300`}>
+          <button onClick={toggleScrollLock} className={`absolute flex justify-center items-center left-9 top-1 bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ${isScrollLocked ? 'ring-inset' : ''} ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-300`}>
             <LockScreenIcon className={`w-5 h-5 duration-150 ${isScrollLocked ? 'text-gray-100' : 'text-gray-600'}`} />
           </button>
 
