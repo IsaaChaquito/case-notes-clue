@@ -5,7 +5,7 @@ export const Select = ({ title, numberOfItems, MAX_ITEMS, handler }) => {
     <select 
       onChange={(e) => handler(e)} 
       value={numberOfItems}
-      className='w-auto h-7 text-white text-xs bg-black dark:text-black dark:bg-white rounded outline-none'
+      className='w-auto h-7 p-1 text-white text-xs bg-black dark:text-black dark:bg-white rounded outline-none'
     >
       {
         Array.from({  length: MAX_ITEMS }).map((_, index) => (
