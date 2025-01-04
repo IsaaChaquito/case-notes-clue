@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CheckIcon } from "../assets/icons";
 
 export const color = [
@@ -31,11 +31,6 @@ export const Avatar = ({ index, cluesPerPlayer = 3, cardState }) => {
     return acc;
   }, 0);
 
-
-
-  useEffect(() => {
-    console.log('avatar index:', index, 'total clues: ', totalClues);
-  }, [cardState.cols[index].rows])
 
   const alternateColor = () => {
     setAvatarColorIndex((prevIndex) => 

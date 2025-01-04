@@ -1,6 +1,7 @@
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Avatares, Rows } from "../components"
+import { LockScreenIcon } from "../assets/icons";
 
 export const cardObject = (cols) => ({
   cols: Array.from({ length: cols }, () => ({
@@ -43,37 +44,43 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
   const [cardState, setCardState] = useState( cardObject(numberOfPlayers) )
 
   const handleCheckOptionState = (rowIndex, colIndex, iconTypeIndex) => {
-    console.log('colIndex', colIndex, 'row', rowIndex, 'icon', iconTypeIndex);
+
     setCardState((prevState) => {
       // Copiamos el estado anterior
-      const newCols = [...prevState.cols];
+      const newCols = [...prevState.cols]
   
       // Actualizamos solo la columna especificada
-      const columnToUpdate = newCols[colIndex];
+      const columnToUpdate = newCols[colIndex]
   
       // Actualizamos solo la fila especificada
-      const updatedRows = [...columnToUpdate.rows];
+      const updatedRows = [...columnToUpdate.rows]
       updatedRows[rowIndex] = {
         ...updatedRows[rowIndex],
         iconTypeIndex, // Actualizamos el iconTypeIndex
-      };
+      }
   
       // Actualizamos las filas de la columna
       newCols[colIndex] = {
         ...columnToUpdate,
         rows: updatedRows,
-      };
+      }
   
       return {
         ...prevState,
         cols: newCols, // Retornamos las columnas actualizadas
-      };
-    });
+      }
+    })
+
   };
 
-  // useEffect(() => {
-  //   console.log('cardState', cardState);
-  // }, [cardState])
+  const [isScrollLocked, setIsScrollLocked] = useState(false);
+
+  const toggleScrollLock = () => {
+    setIsScrollLocked((prev) => !prev)
+    document.body.style.overflow = !isScrollLocked ? "hidden" : "";
+  };
+
+
 
   return (
     <div className="CARD max-w-[400px] w-full mb-20 sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col ">
@@ -83,6 +90,11 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
           Sospechosos y jugadores
         </h2>
         <section className="AVATARES w-full  pl-[108px] border-l-2 border-gray-700">
+          
+          <button onClick={toggleScrollLock} className='absolute flex justify-center items-center left-11 top-[100px] bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ring-insett ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-75'>
+            <LockScreenIcon className="w-5 h-5 text-gray-500" />
+          </button>
+
           <Avatares 
             numberOfPlayers={numberOfPlayers} 
             cluesPerPlayer={cluesPerPlayer}  
@@ -126,6 +138,8 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
           section="places"
         />
       </section>
+
+      
     </div>
   )
 }
