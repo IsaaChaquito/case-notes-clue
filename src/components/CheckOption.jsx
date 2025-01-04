@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { CheckIcon, CloseIcon, QuestionMarkIcon } from '../assets/icons'
 
-export const CheckOption = ({ cardState, handleCheckOptionState, rowIndex, colIndex }) => {
+export const CheckOption = ({ handleCheckOptionState, rowIndex, colIndex }) => {
 
   const [selectedOption, setSelectedOption] = useState(0)
 
@@ -31,17 +31,6 @@ export const CheckOption = ({ cardState, handleCheckOptionState, rowIndex, colIn
 
     handleCheckOptionState(rowIndex, colIndex, selectedOption)
   }
-
-  useEffect(() => {
-    // cardState[index] = selectedOption
-
-    // setCardState( prevState => ({
-    //   ...prevState,
-    //   [index][index]: selectedOption
-    // }))
-
-
-  }, [selectedOption])
 
   return (
     <button 

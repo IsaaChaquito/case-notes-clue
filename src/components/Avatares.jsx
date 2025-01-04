@@ -1,12 +1,12 @@
 import { Avatar } from "../components"
 
 
-export const Avatares = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
+export const Avatares = ({ numberOfPlayers = 6, cluesPerPlayer = 3, cardState }) => {
   return (
     <div className="flex justify-center items-center  border-r-2 border-gray-700">
       {
         Array.from({ length: numberOfPlayers }).map((_, index) => (
-          <Avatar key={index} index={index} cluesPerPlayer={cluesPerPlayer} />
+          <Avatar key={index} index={index} cluesPerPlayer={cluesPerPlayer} cardState={cardState} />
         ))
       }
     </div>

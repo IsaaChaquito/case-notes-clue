@@ -1,20 +1,12 @@
 
 import { useEffect, useState } from "react"
-import { Row , Avatares, Rows } from "../components"
+import { Avatares, Rows } from "../components"
 
-export const cardObject = ( cols ) => {
-  return {
-    cols: Array.from({ length: cols }).map((_) => {
-      return {
-        rows: Array.from({ length: 21 }).map((_) => {
-          return {
-            iconTypeIndex: 0,
-          }
-        }),
-      }
-    })
-  }
-}
+export const cardObject = (cols) => ({
+  cols: Array.from({ length: cols }, () => ({
+    rows: Array(21).fill({ iconTypeIndex: 0 }),
+  })),
+});
 
 export const suspects = [
   "Verduzco",
@@ -79,9 +71,9 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
     });
   };
 
-  useEffect(() => {
-    console.log('cardState', cardState);
-  }, [cardState])
+  // useEffect(() => {
+  //   console.log('cardState', cardState);
+  // }, [cardState])
 
   return (
     <div className="CARD max-w-[400px] w-full mb-20 sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col ">
@@ -94,6 +86,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
           <Avatares 
             numberOfPlayers={numberOfPlayers} 
             cluesPerPlayer={cluesPerPlayer}  
+            cardState={cardState}
           />
         </section>
         {/* Nombre de personajes */}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckIcon } from "../assets/icons";
 
 export const color = [
@@ -19,9 +19,23 @@ export const colorNames = [
   "Blanca",
 ];
 
-export const Avatar = ({ index, cluesPerPlayer = 3 }) => {
+export const Avatar = ({ index, cluesPerPlayer = 3, cardState }) => {
 
   const [avatarColorIndex, setAvatarColorIndex] = useState(index);
+
+  // Count all rows in col[index] when iconTypeIndex === 2
+  const totalClues = cardState.cols[index].rows.reduce((acc, row) => {
+    if (row.iconTypeIndex === 2) {
+      acc += 1;
+    }
+    return acc;
+  }, 0);
+
+
+
+  useEffect(() => {
+    console.log('avatar index:', index, 'total clues: ', totalClues);
+  }, [cardState.cols[index].rows])
 
   const alternateColor = () => {
     setAvatarColorIndex((prevIndex) => 
@@ -52,7 +66,7 @@ export const Avatar = ({ index, cluesPerPlayer = 3 }) => {
         {Array.from({length: cluesPerPlayer}).map((_, index) => (
           <CheckIcon 
             key={index}
-            className="w-full h-full text-gray-500 bg-white dark:bg-black rounded-full" 
+            className={`w-full h-full bg-white dark:bg-black rounded-full ${totalClues > index ? 'text-green-500' : 'text-gray-500'}`} 
           />
         ))}
       </section>
