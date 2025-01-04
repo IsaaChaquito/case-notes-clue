@@ -93,7 +93,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
 
   return (
-    <div className={`CARD ${isScrollLocked ? 'locked' : ''} max-w-[400px] w-full mb-20 sm:w-full h-auto sm:rounded bg-white dark:bg-black/60 dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col `}>
+    <div className={`CARD ${isScrollLocked ? 'locked' : ''} max-w-[400px] w-full mb-20 mt-10 z-50 sm:w-full h-auto sm:rounded bg-white dark:bg-black dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col `}>
       
       <section className="SUSPECTS w-full h-auto">
         <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-1">
