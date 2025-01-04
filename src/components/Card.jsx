@@ -78,7 +78,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
   const toggleScrollLock = () => {
     setIsScrollLocked((prev) => !prev)
     document.body.style.overflow = !isScrollLocked ? "hidden" : "";
-    document.body.style.height = !isScrollLocked ? "100vh" : "";
+    // document.body.style.height = !isScrollLocked ? "100vh" : "";
   };
   
 
