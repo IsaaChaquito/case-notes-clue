@@ -1,5 +1,5 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Avatares, Rows } from "../components"
 import { LockScreenIcon } from "../assets/icons";
 
@@ -77,80 +77,104 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
   const toggleScrollLock = () => {
     setIsScrollLocked((prev) => !prev)
-    // document.body.style.overflow = !isScrollLocked ? "hidden" : "";
     document.body.style.touchAction = !isScrollLocked ? "none" : "";
   };
-  
 
-  function adjustHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }
-  
-  window.addEventListener("resize", adjustHeight);
-  adjustHeight();
+
+  useEffect(() => {
+
+    if(!cardState){
+      setCardState(cardObject(numberOfPlayers))
+    }
+
+    if( localStorage.getItem('cardState') ){
+      console.log('setting cardState from localStorage');
+      setCardState(JSON.parse(localStorage.getItem('cardState')))
+    }else{
+      console.log('setting cardState from state');
+      localStorage.setItem('cardState', JSON.stringify(cardState))
+      setCardState(JSON.parse(localStorage.getItem('cardState')))
+    }
+
+  }, [])
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      console.log('cardState updated!');
+      localStorage.setItem('cardState', JSON.stringify(cardState))
+    }, 300)
+  }, [cardState?.cols])
   
 
 
   return (
-    <div className={`CARD ${isScrollLocked ? 'locked' : ''} max-w-[400px] w-full mb-20 mt-10 z-50 sm:w-full h-auto sm:rounded bg-white dark:bg-black dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col `}>
+    <>
+    {
+      cardState && (
+        <div className={`CARD max-w-[400px] w-full mb-20 mt-10 z-50 sm:w-full h-auto sm:rounded bg-white dark:bg-black dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col `}>
       
-      <section className="SUSPECTS w-full h-auto">
-        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
-          Sospechosos y jugadores
-        </h2>
-        <section className="AVATARES relative w-full  pl-[108px] border-l-2 border-gray-700">
-          
-          <button onClick={toggleScrollLock} className={`absolute flex justify-center items-center left-9 top-1 bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ${isScrollLocked ? 'ring-inset' : ''} ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-300`}>
-            <LockScreenIcon className={`w-5 h-5 duration-150 ${isScrollLocked ? 'text-gray-100' : 'text-gray-600'}`} />
-          </button>
-
-          <Avatares 
-            numberOfPlayers={numberOfPlayers} 
-            cluesPerPlayer={cluesPerPlayer}  
-            cardState={cardState}
+        <section className="SUSPECTS w-full h-auto">
+          <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
+            Sospechosos y jugadores
+          </h2>
+          <section className="AVATARES relative w-full  pl-[108px] border-l-2 border-gray-700">
+            
+            <button onClick={toggleScrollLock} className={`absolute flex justify-center items-center left-9 top-1 bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ${isScrollLocked ? 'ring-inset' : ''} ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-300`}>
+              <LockScreenIcon className={`w-5 h-5 duration-150 ${isScrollLocked ? 'text-gray-100' : 'text-gray-600'}`} />
+            </button>
+  
+            <Avatares 
+              numberOfPlayers={numberOfPlayers} 
+              cluesPerPlayer={cluesPerPlayer}  
+              cardState={cardState}
+            />
+          </section>
+          {/* Nombre de personajes */}
+          <Rows 
+            cardState={cardState} 
+            handleCheckOptionState={handleCheckOptionState} 
+            labels={suspects} 
+            numberOfPlayers={numberOfPlayers}
+            section="suspects"
           />
         </section>
-        {/* Nombre de personajes */}
-        <Rows 
-          cardState={cardState} 
-          handleCheckOptionState={handleCheckOptionState} 
-          labels={suspects} 
-          numberOfPlayers={numberOfPlayers}
-          section="suspects"
-        />
-      </section>
+  
+        <section className="SUSPECTS w-full h-auto">
+          <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
+            Armas
+          </h2>
+  
+          <Rows 
+            cardState={cardState} 
+            handleCheckOptionState={handleCheckOptionState} 
+            labels={weapons} 
+            numberOfPlayers={numberOfPlayers}
+            section="weapons"
+          />
+        </section>
+  
+        <section className="SUSPECTS w-full h-auto">
+          <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
+            Lugares
+          </h2>
+  
+          <Rows 
+            cardState={cardState} 
+            handleCheckOptionState={handleCheckOptionState} 
+            labels={places} 
+            numberOfPlayers={numberOfPlayers}
+            section="places"
+          />
+        </section>
+  
+        
+      </div>
+      )
+    }
 
-      <section className="SUSPECTS w-full h-auto">
-        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
-          Armas
-        </h2>
-
-        <Rows 
-          cardState={cardState} 
-          handleCheckOptionState={handleCheckOptionState} 
-          labels={weapons} 
-          numberOfPlayers={numberOfPlayers}
-          section="weapons"
-        />
-      </section>
-
-      <section className="SUSPECTS w-full h-auto">
-        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
-          Lugares
-        </h2>
-
-        <Rows 
-          cardState={cardState} 
-          handleCheckOptionState={handleCheckOptionState} 
-          labels={places} 
-          numberOfPlayers={numberOfPlayers}
-          section="places"
-        />
-      </section>
-
-      
-    </div>
+  </>
+    
   )
 }
 
