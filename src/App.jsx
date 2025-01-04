@@ -3,6 +3,7 @@ import './App.css'
 import { DarkModeButton, Card, Select } from './components'
 import { LogoClueIcon } from './assets/icons'
 import { useEffect, useState } from 'react'
+import { Footer } from './components/Footer'
 
 function App() {
 
@@ -72,6 +73,9 @@ function App() {
         numberOfPlayers={numberOfPlayers}
         cluesPerPlayer={cluesPerPlayer}
       />
+
+
+      <Footer />
 
     </div>
   )
