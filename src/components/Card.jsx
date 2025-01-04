@@ -41,7 +41,7 @@ export const places = [
 
 export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
-  const [cardState, setCardState] = useState( cardObject(numberOfPlayers) )
+  const [cardState, setCardState] = useState()
 
   const handleCheckOptionState = (rowIndex, colIndex, iconTypeIndex) => {
 
@@ -83,28 +83,23 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
   useEffect(() => {
 
-    if(!cardState){
-      setCardState(cardObject(numberOfPlayers))
+    const storedCardState = localStorage.getItem('cardState');
+    if (storedCardState) {
+      // Si hay un estado guardado, lo usamos.
+      setCardState(JSON.parse(storedCardState));
+    } else {
+      // Si no hay estado guardado, inicializamos con un valor por defecto.
+      const initialCardState = cardObject(numberOfPlayers);
+      setCardState(initialCardState);
+      // No escribimos en localStorage aquí, dejamos que el segundo useEffect lo maneje.
     }
-
-    if( localStorage.getItem('cardState') ){
-      console.log('setting cardState from localStorage');
-      setCardState(JSON.parse(localStorage.getItem('cardState')))
-    }else{
-      console.log('setting cardState from state');
-      localStorage.setItem('cardState', JSON.stringify(cardState))
-      setCardState(JSON.parse(localStorage.getItem('cardState')))
-    }
-
-  }, [])
-
+  }, [numberOfPlayers]);
+  
   useEffect(() => {
-
-    setTimeout(() => {
-      console.log('cardState updated!');
-      localStorage.setItem('cardState', JSON.stringify(cardState))
-    }, 300)
-  }, [cardState?.cols])
+    if (!cardState) return
+      localStorage.setItem('cardState', JSON.stringify(cardState));
+  }, [cardState]);
+  
   
 
 

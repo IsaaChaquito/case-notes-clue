@@ -25,7 +25,7 @@ export const Avatar = ({ index, cluesPerPlayer = 3, cardState }) => {
 
   // Count all rows in col[index] when iconTypeIndex === 2
   const totalClues = cardState.cols[index].rows.reduce((acc, row) => {
-    if (row.iconTypeIndex === 2) {
+    if (row.iconTypeIndex === 3) {
       acc += 1;
     }
     return acc;

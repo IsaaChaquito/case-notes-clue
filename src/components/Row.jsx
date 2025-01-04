@@ -24,7 +24,13 @@ export const Row = (
       </h1>
       {
         Array.from({  length: numberOfOptions }).map((_, index) => (
-          <CheckOption key={index} cardState={cardState} handleCheckOptionState={handleCheckOptionState} rowIndex={rowIndex} colIndex={index}/>
+          <CheckOption 
+            key={index} 
+            cardState={cardState} 
+            handleCheckOptionState={handleCheckOptionState} 
+            rowIndex={rowIndex} 
+            colIndex={index}
+          />
         ))
       }
     </div>
