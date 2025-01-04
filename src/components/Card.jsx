@@ -89,9 +89,9 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
         <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-1">
           Sospechosos y jugadores
         </h2>
-        <section className="AVATARES w-full  pl-[108px] border-l-2 border-gray-700">
+        <section className="AVATARES relative w-full  pl-[108px] border-l-2 border-gray-700">
           
-          <button onClick={toggleScrollLock} className='absolute flex justify-center items-center left-11 top-[100px] bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ring-insett ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-75'>
+          <button onClick={toggleScrollLock} className='absolute flex justify-center items-center left-11 top-0 bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ring-insett ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-75'>
             <LockScreenIcon className="w-5 h-5 text-gray-500" />
           </button>
 
