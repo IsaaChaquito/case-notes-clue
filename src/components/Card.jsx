@@ -77,8 +77,8 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
   const toggleScrollLock = () => {
     setIsScrollLocked((prev) => !prev)
-    document.body.style.overflow = !isScrollLocked ? "hidden" : "";
-    // document.body.style.height = !isScrollLocked ? "100vh" : "";
+    // document.body.style.overflow = !isScrollLocked ? "hidden" : "";
+    document.body.style.touchAction = !isScrollLocked ? "none" : "";
   };
   
 
@@ -96,7 +96,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
     <div className={`CARD ${isScrollLocked ? 'locked' : ''} max-w-[400px] w-full mb-20 mt-10 z-50 sm:w-full h-auto sm:rounded bg-white dark:bg-black dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col `}>
       
       <section className="SUSPECTS w-full h-auto">
-        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-1">
+        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
           Sospechosos y jugadores
         </h2>
         <section className="AVATARES relative w-full  pl-[108px] border-l-2 border-gray-700">
@@ -122,7 +122,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
       </section>
 
       <section className="SUSPECTS w-full h-auto">
-        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-1">
+        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
           Armas
         </h2>
 
@@ -136,7 +136,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
       </section>
 
       <section className="SUSPECTS w-full h-auto">
-        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-1">
+        <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
           Lugares
         </h2>
 
