@@ -78,6 +78,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
   const toggleScrollLock = () => {
     setIsScrollLocked((prev) => !prev)
     document.body.style.overflow = !isScrollLocked ? "hidden" : "";
+    document.body.style.height = !isScrollLocked ? "100vh" : "";
   };
 
 
@@ -91,8 +92,8 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
         </h2>
         <section className="AVATARES relative w-full  pl-[108px] border-l-2 border-gray-700">
           
-          <button onClick={toggleScrollLock} className='absolute flex justify-center items-center left-11 top-0 bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ring-insett ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-75'>
-            <LockScreenIcon className="w-5 h-5 text-gray-500" />
+          <button onClick={toggleScrollLock} className={`absolute flex justify-center items-center left-11 top-0 bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ${isScrollLocked ? 'ring-inset' : ''} ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-300`}>
+            <LockScreenIcon className={`w-5 h-5 duration-150 ${isScrollLocked ? 'text-gray-100' : 'text-gray-600'}`} />
           </button>
 
           <Avatares 
