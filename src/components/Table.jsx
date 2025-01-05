@@ -4,14 +4,14 @@ import { Avatares, Rows } from "."
 import { LockScreenIcon } from "../assets/icons";
 import { suspects, weapons, places } from "../helpers/constants";
 
-export const cardObject = (cols) => ({
+export const tableObject = (cols) => ({
   cols: Array.from({ length: cols }, () => ({
     rows: Array(21).fill({ iconTypeIndex: 0 }),
   })),
 });
 
 
-export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
+export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
   const [cardState, setCardState] = useState()
 
@@ -61,7 +61,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
       setCardState(JSON.parse(storedCardState));
     } else {
       // Si no hay estado guardado, inicializamos con un valor por defecto.
-      const initialCardState = cardObject(numberOfPlayers);
+      const initialCardState = tableObject(numberOfPlayers);
       setCardState(initialCardState);
       // No escribimos en localStorage aquí, dejamos que el segundo useEffect lo maneje.
     }
@@ -78,6 +78,7 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
   return (
     <>
     {
+      // blur-2xl pointer-events-none
       cardState && (
         <div className={`CARD max-w-[400px] w-full  mt-10 z-50 sm:w-full h-auto sm:rounded bg-white dark:bg-black dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col `}>
       
@@ -145,4 +146,4 @@ export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
   )
 }
 
-export default Card
+export default Table
