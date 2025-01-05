@@ -1,7 +1,7 @@
 
 import './App.css'
 import { DarkModeButton, Card, Select } from './components'
-import { LogoClueIcon } from './assets/icons'
+import { LogoClueIcon, TrashIcon } from './assets/icons'
 import { useState } from 'react'
 import { Footer } from './components/Footer'
 
@@ -20,6 +20,16 @@ function App() {
   const handleCluesPerPlayer = (e) => {
     setcluesPerPlayer(e.target.value)
   } 
+
+  const clearLocalStorage = () => {
+
+    // const result = confirm('¿Eliminar los registros de la partida?')
+
+    if( !confirm('¿Eliminar los registros de la partida?') ) return
+
+    localStorage.removeItem('cardState')
+    window.location.reload()
+  }
 
 
   return (
@@ -51,6 +61,12 @@ function App() {
         cluesPerPlayer={cluesPerPlayer}
       />
 
+      <section className='relative w-full flex my-5 justify-center items-center'>
+        <button onClick={clearLocalStorage} className='absolute right-6 flex justify-center items-center text-xs p-2 rounded-full bg-red-800 text-black dark:text-white'>
+          Reset
+          <TrashIcon className='w-4 h-4'/>
+        </button>
+      </section>
 
       <Footer />
 
