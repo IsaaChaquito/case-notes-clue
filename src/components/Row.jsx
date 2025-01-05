@@ -18,7 +18,7 @@ export const Row = ({
     // Inicia el temporizador
     holdTimeout.current = setTimeout(() => {
       setShowClueCard(true);
-      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
     }, 500);
   };
 
@@ -29,7 +29,7 @@ export const Row = ({
 
   const onCloseClueCard = () => {
     setShowClueCard(false);
-    document.body.style.overflow = "";
+    document.body.style.touchAction = "";
 
   };
 
