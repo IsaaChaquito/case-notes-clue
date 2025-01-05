@@ -1,6 +1,6 @@
 
 import './App.css'
-import { DarkModeButton, Card, Select } from './components'
+import { DarkModeButton, Card, Select, ClueCard } from './components'
 import { LogoClueIcon, TrashIcon } from './assets/icons'
 import { useState } from 'react'
 import { Footer } from './components/Footer'
@@ -62,6 +62,13 @@ function App() {
       />
 
       <section className='relative w-full flex my-5 justify-center items-center'>
+
+        <div className='CLUES-CARDS flex justify-center items-center gap-2'>
+          <ClueCard name='A' />
+          {/* <ClueCard name='A' />
+          <ClueCard name='A' /> */}
+        </div>
+
         <button onClick={clearLocalStorage} className='absolute right-6 flex justify-center items-center text-xs p-2 rounded-full bg-red-800 text-black dark:text-white'>
           Reset
           <TrashIcon className='w-4 h-4'/>

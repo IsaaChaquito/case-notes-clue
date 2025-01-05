@@ -1,36 +1,6 @@
 import { Row } from "../components"
+import { stylesFor } from "../helpers/constants"
 
-const stylesFor = {
-  suspects: [
-    "border-x-2 border-b-2 border-gray-700 text-green-500",
-    "border-x-2 border-b-2 border-gray-700 text-yellow-500",
-    "border-x-2 border-b-2 border-gray-700 text-blue-500",
-    "border-x-2 border-b-2 border-gray-700 text-purple-500",
-    "border-x-2 border-b-2 border-gray-700 text-red-500",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white"
-  ],
-
-  weapons: [
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white"
-  ],
-
-  places: [
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-    "border-x-2 border-b-2 border-gray-700 text-black dark:text-white",
-  ],
-}
 
 export const Rows = ({cardState, handleCheckOptionState, labels, numberOfPlayers, section}) => {
 

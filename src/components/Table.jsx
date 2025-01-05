@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from "react"
-import { Avatares, Rows } from "../components"
+import { Avatares, Rows } from "."
 import { LockScreenIcon } from "../assets/icons";
+import { suspects, weapons, places } from "../helpers/constants";
 
 export const cardObject = (cols) => ({
   cols: Array.from({ length: cols }, () => ({
@@ -9,35 +10,6 @@ export const cardObject = (cols) => ({
   })),
 });
 
-export const suspects = [
-  "Verduzco",
-  "Mostaza",
-  "Marlene",
-  "Moradillo",
-  "Escarlata",
-  "Blanca",
-]
-
-export const weapons = [
-  "Candelabro",
-  "Daga",
-  "Tubo de plomo",
-  "Revólver",
-  "Soga",
-  "Llave inglesa",
-]
-
-export const places = [
-  "Salón de baile",
-  "Sala de billar",
-  "Terraza",
-  "Comedor",
-  "Pasillo",
-  "Cocina",
-  "Biblioteca",
-  "Sala",
-  "Estudio",
-]
 
 export const Card = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
