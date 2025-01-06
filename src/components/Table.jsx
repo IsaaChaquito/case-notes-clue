@@ -17,11 +17,11 @@ export const tableObject = (cols) => (
 
 export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
-  const [cardState, setCardState] = useState()
+  const [tableState, setTableState] = useState()
 
   const handleCheckOptionState = (rowIndex, colIndex, iconTypeIndex) => {
 
-    setCardState((prevState) => {
+    setTableState((prevState) => {
       // Copiamos el estado anterior
       const newCols = [...prevState.cols]
   
@@ -51,7 +51,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
 
   const onAvatarColorChange = ( avatarIndex, indexColor ) => {
-    setCardState ((prevState) => ({
+    setTableState ((prevState) => ({
       ...prevState,
       avatarsColorOrder: {
         ...prevState.avatarsColorOrder,
@@ -61,7 +61,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
   }
 
   const onLabelChecked = (index) => {
-    setCardState((prevState) => ({
+    setTableState((prevState) => ({
       ...prevState,
       labelsChecked: {
         ...prevState.labelsChecked,
@@ -80,24 +80,24 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
 
   useEffect(() => {
 
-    const storedCardState = localStorage.getItem('cardState');
+    const storedCardState = localStorage.getItem('tableState');
     
     if (storedCardState) {
       // Si hay un estado guardado, lo usamos.
-      setCardState(JSON.parse(storedCardState));
+      setTableState(JSON.parse(storedCardState));
     } else {
       // Si no hay estado guardado, inicializamos con un valor por defecto.
       const initialCardState = tableObject(numberOfPlayers);
-      setCardState(initialCardState);
+      setTableState(initialCardState);
       // No escribimos en localStorage aquí, dejamos que el segundo useEffect lo maneje.
     }
 
   }, [numberOfPlayers]);
   
   useEffect(() => {
-    if (!cardState) return
-      localStorage.setItem('cardState', JSON.stringify(cardState));
-  }, [cardState]);
+    if (!tableState) return
+      localStorage.setItem('tableState', JSON.stringify(tableState));
+  }, [tableState]);
   
   
 
@@ -106,7 +106,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
     <>
     {
       // blur-2xl pointer-events-none
-      cardState && (
+      tableState && (
         <div className={`CARD max-w-[400px] w-full  mt-10 z-50 sm:w-full h-auto sm:rounded bg-white dark:bg-black dark:border-0 text-black dark:text-white sm:border-2 border-black/60 dark:border-transparent flex flex-col `}>
       
         <section className="SUSPECTS w-full h-auto">
@@ -122,13 +122,13 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
             <Avatares 
               numberOfPlayers={numberOfPlayers} 
               cluesPerPlayer={cluesPerPlayer}  
-              cardState={cardState}
+              cardState={tableState}
               onAvatarColorChange={onAvatarColorChange}
             />
           </section>
           {/* Nombre de personajes */}
           <Rows 
-            cardState={cardState} 
+            cardState={tableState} 
             handleCheckOptionState={handleCheckOptionState} 
             labels={suspects} 
             numberOfPlayers={numberOfPlayers}
@@ -143,7 +143,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
           </h2>
   
           <Rows 
-            cardState={cardState} 
+            cardState={tableState} 
             handleCheckOptionState={handleCheckOptionState} 
             labels={weapons} 
             numberOfPlayers={numberOfPlayers}
@@ -158,7 +158,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
           </h2>
   
           <Rows 
-            cardState={cardState} 
+            cardState={tableState} 
             handleCheckOptionState={handleCheckOptionState} 
             labels={places} 
             numberOfPlayers={numberOfPlayers}

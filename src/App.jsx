@@ -4,6 +4,7 @@ import { DarkModeButton, Table, Select } from './components'
 import { LogoClueIcon, TrashIcon } from './assets/icons'
 import { useState } from 'react'
 import { Footer } from './components/Footer'
+import { tableObject } from './components'
 
 function App() {
 
@@ -26,8 +27,18 @@ function App() {
     // const result = confirm('¿Eliminar los registros de la partida?')
 
     if( !confirm('¿Eliminar los registros de la partida?') ) return
+    const keepColorsOrder = confirm('¿Desea conservar el orden de los jugadores?')
 
-    localStorage.removeItem('cardState')
+
+    if( keepColorsOrder ) {
+      let tableState = JSON.parse(localStorage.getItem('tableState'))
+      const newTableState = tableObject(numberOfPlayers)
+      newTableState.avatarsColorOrder = tableState.avatarsColorOrder
+      localStorage.setItem('tableState', JSON.stringify(newTableState ))
+    }else{
+      localStorage.setItem('tableState', JSON.stringify(tableObject(numberOfPlayers)))
+    }
+    
     window.location.reload()
   }
 
@@ -58,9 +69,10 @@ function App() {
       <Table 
         numberOfPlayers={numberOfPlayers}
         cluesPerPlayer={cluesPerPlayer}
+        tableState={JSON.parse(localStorage.getItem('tableState'))}
       />
 
-      <section className='relative w-full flex my-5 justify-center items-center'>
+      <section className='w-full flex my-5 justify-center items-center'>
         <button onClick={clearLocalStorage} className='flex justify-center items-center text-xs p-2 rounded-full bg-red-800 text-black dark:text-white'>
           Reset
           <TrashIcon className='w-4 h-4'/>
