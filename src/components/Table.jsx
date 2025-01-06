@@ -4,11 +4,15 @@ import { Avatares, Rows } from "."
 import { LockScreenIcon } from "../assets/icons";
 import { suspects, weapons, places } from "../helpers/constants";
 
-export const tableObject = (cols) => ({
-  cols: Array.from({ length: cols }, () => ({
-    rows: Array(21).fill({ iconTypeIndex: 0 }),
-  })),
-});
+export const tableObject = (cols) => (
+  {
+    avatarsColorOrder: Array.from({ length: cols }, (_, i) => i),
+    cols: Array.from({ length: cols }, () => ({
+      rows: Array(21).fill({ iconTypeIndex: 0 }),
+    })),
+    labelsChecked: Array(21).fill(false),
+  }
+);
 
 
 export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
@@ -43,7 +47,28 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
       }
     })
 
-  };
+  }
+
+
+  const onAvatarColorChange = ( avatarIndex, indexColor ) => {
+    setCardState ((prevState) => ({
+      ...prevState,
+      avatarsColorOrder: {
+        ...prevState.avatarsColorOrder,
+        [avatarIndex]: indexColor
+      }
+    }))
+  }
+
+  const onLabelChecked = (index) => {
+    setCardState((prevState) => ({
+      ...prevState,
+      labelsChecked: {
+        ...prevState.labelsChecked,
+        [index]: !prevState.labelsChecked[index]
+      }
+    }))
+  }
 
   const [isScrollLocked, setIsScrollLocked] = useState(false);
 
@@ -56,6 +81,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
   useEffect(() => {
 
     const storedCardState = localStorage.getItem('cardState');
+    
     if (storedCardState) {
       // Si hay un estado guardado, lo usamos.
       setCardState(JSON.parse(storedCardState));
@@ -65,6 +91,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
       setCardState(initialCardState);
       // No escribimos en localStorage aquí, dejamos que el segundo useEffect lo maneje.
     }
+
   }, [numberOfPlayers]);
   
   useEffect(() => {
@@ -96,6 +123,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
               numberOfPlayers={numberOfPlayers} 
               cluesPerPlayer={cluesPerPlayer}  
               cardState={cardState}
+              onAvatarColorChange={onAvatarColorChange}
             />
           </section>
           {/* Nombre de personajes */}
@@ -105,6 +133,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
             labels={suspects} 
             numberOfPlayers={numberOfPlayers}
             section="suspects"
+            onLabelChecked={onLabelChecked}
           />
         </section>
   
@@ -119,6 +148,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
             labels={weapons} 
             numberOfPlayers={numberOfPlayers}
             section="weapons"
+            onLabelChecked={onLabelChecked}
           />
         </section>
   
@@ -133,6 +163,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
             labels={places} 
             numberOfPlayers={numberOfPlayers}
             section="places"
+            onLabelChecked={onLabelChecked}
           />
         </section>
   

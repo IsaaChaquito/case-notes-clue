@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckIcon } from "../assets/icons";
 import { suspects, characterColors } from "../helpers/constants";
 
 
 
-export const Avatar = ({ index, cluesPerPlayer = 3, cardState }) => {
+export const Avatar = ({ index, cluesPerPlayer = 3, cardState, onAvatarColorChange }) => {
 
   const [avatarColorIndex, setAvatarColorIndex] = useState(index);
 
-  // Count all rows in col[index] when iconTypeIndex === 2
+  // Count all rows in col[index] when iconTypeIndex === 3, wich means "clue" or check.
   const totalClues = cardState.cols[index].rows.reduce((acc, row) => {
     if (row.iconTypeIndex === 3) {
       acc += 1;
@@ -22,6 +22,19 @@ export const Avatar = ({ index, cluesPerPlayer = 3, cardState }) => {
       prevIndex + 1 > suspects.length-1 ? 0 : prevIndex + 1
     );
   };
+
+  
+  useEffect(() => {
+    onAvatarColorChange(index, avatarColorIndex)
+  }, [avatarColorIndex])
+
+  useEffect(() => {
+    if (cardState) {
+      console.log(cardState);
+      setAvatarColorIndex(cardState.avatarsColorOrder[index])
+    }
+  }, [])
+
 
   return (
     <button 

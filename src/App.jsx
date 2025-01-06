@@ -1,6 +1,6 @@
 
 import './App.css'
-import { DarkModeButton, Table, Select, ClueCard } from './components'
+import { DarkModeButton, Table, Select } from './components'
 import { LogoClueIcon, TrashIcon } from './assets/icons'
 import { useState } from 'react'
 import { Footer } from './components/Footer'

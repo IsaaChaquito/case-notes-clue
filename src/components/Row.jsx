@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CheckOption from "./CheckOption";
 import { ClueCard } from "./ClueCard";
 
@@ -9,6 +9,7 @@ export const Row = ({
   numberOfOptions = 6,
   cardState,
   handleCheckOptionState,
+  onLabelChecked,
 }) => {
   const [labelLineThrough, setLabelLineThrough] = useState(false);
   const holdTimeout = useRef(null);
@@ -17,26 +18,35 @@ export const Row = ({
   const handleMouseDown = () => {
     // Inicia el temporizador
     holdTimeout.current = setTimeout(() => {
-      setShowClueCard(true);
-      document.body.style.overflow = "hidden";
+      setShowClueCard(true)
+      document.body.style.overflow = "hidden"
     }, 500);
   };
 
   const handleMouseUp = () => {
     // Limpia el temporizador al soltar el botón
     clearTimeout(holdTimeout.current);
+  }
+
+  const handleLabelLineThrough = () => {
+    setLabelLineThrough(!labelLineThrough);
+    onLabelChecked(rowIndex);
   };
 
   const onCloseClueCard = () => {
     setShowClueCard(false);
-    document.body.style.overflow = "";
+    document.body.style.overflow = ""
+  }
 
-  };
+
+  useEffect(() => {
+    if(cardState) setLabelLineThrough( cardState.labelsChecked[rowIndex] )
+  }, [])
 
   return (
     <div className="CLUE-SUSPECTS h-7 flex items-center select-none">
       <h1
-        onClick={() => setLabelLineThrough(!labelLineThrough)}
+        onClick={ handleLabelLineThrough }
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp} // Para manejar si el mouse se sale del botón

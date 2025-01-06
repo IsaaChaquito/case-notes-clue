@@ -2,7 +2,7 @@ import { Row } from "../components"
 import { stylesFor } from "../helpers/constants"
 
 
-export const Rows = ({cardState, handleCheckOptionState, labels, numberOfPlayers, section}) => {
+export const Rows = ({cardState, handleCheckOptionState, labels, numberOfPlayers, section, onLabelChecked}) => {
 
   const acumulator = section === "suspects" ? 0 : section === "weapons" ? 6 : 12
 
@@ -16,6 +16,7 @@ export const Rows = ({cardState, handleCheckOptionState, labels, numberOfPlayers
         label={labels[index]} 
         labelColor={stylesFor[section][index]} 
         numberOfOptions={numberOfPlayers} 
+        onLabelChecked={onLabelChecked}
       />
     ))
   )
