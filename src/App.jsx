@@ -61,7 +61,7 @@ function App() {
       />
 
       <section className='relative w-full flex my-5 justify-center items-center'>
-        <button onClick={clearLocalStorage} className='absolute right-6 flex justify-center items-center text-xs p-2 rounded-full bg-red-800 text-black dark:text-white'>
+        <button onClick={clearLocalStorage} className='flex justify-center items-center text-xs p-2 rounded-full bg-red-800 text-black dark:text-white'>
           Reset
           <TrashIcon className='w-4 h-4'/>
         </button>
