@@ -4,18 +4,20 @@ import { Avatares, Rows } from "."
 import { LockScreenIcon } from "../assets/icons";
 import { suspects, weapons, places } from "../helpers/constants";
 
-export const tableObject = (cols) => (
+export const tableObject = (cols, cluesPerPlayer) => (
   {
     avatarsColorOrder: Array.from({ length: cols }, (_, i) => i),
     cols: Array.from({ length: cols }, () => ({
       rows: Array(21).fill({ iconTypeIndex: 0 }),
     })),
     labelsChecked: Array(21).fill(false),
+    numberOfPlayers: Number(cols),
+    cluesPerPlayer,
   }
 );
 
 
-export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
+export const Table = ({ numberOfPlayers, cluesPerPlayer }) => {
 
   const [tableState, setTableState] = useState()
 
@@ -70,13 +72,6 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
     }))
   }
 
-  const [isScrollLocked, setIsScrollLocked] = useState(false);
-
-  const toggleScrollLock = () => {
-    setIsScrollLocked((prev) => !prev)
-    document.body.style.touchAction = !isScrollLocked ? "none" : "";
-  };
-
 
   useEffect(() => {
 
@@ -84,15 +79,18 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
     
     if (storedCardState) {
       // Si hay un estado guardado, lo usamos.
-      setTableState(JSON.parse(storedCardState));
+      const state = JSON.parse(storedCardState)
+      state.numberOfPlayers = numberOfPlayers
+      state.cluesPerPlayer = cluesPerPlayer
+      setTableState(state);
     } else {
       // Si no hay estado guardado, inicializamos con un valor por defecto.
-      const initialCardState = tableObject(numberOfPlayers);
+      const initialCardState = tableObject(numberOfPlayers, cluesPerPlayer);
       setTableState(initialCardState);
       // No escribimos en localStorage aquí, dejamos que el segundo useEffect lo maneje.
     }
 
-  }, [numberOfPlayers]);
+  }, [numberOfPlayers, cluesPerPlayer]);
   
   useEffect(() => {
     if (!tableState) return
@@ -114,10 +112,6 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
             Sospechosos y jugadores
           </h2>
           <section className="AVATARES relative w-full  pl-[108px] border-l-2 border-gray-700">
-            
-            <button onClick={toggleScrollLock} className={`absolute flex justify-center items-center left-9 top-1 bg-black w-9 h-9 rounded-full border-2 border-gray-700 ring-2 ${isScrollLocked ? 'ring-inset' : ''} ring-gray-600 shadow-white/50 shadow active:shadow-none active:scale-95 duration-300`}>
-              <LockScreenIcon className={`w-5 h-5 duration-150 ${isScrollLocked ? 'text-gray-100' : 'text-gray-600'}`} />
-            </button>
   
             <Avatares 
               numberOfPlayers={numberOfPlayers} 
@@ -126,6 +120,7 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
               onAvatarColorChange={onAvatarColorChange}
             />
           </section>
+
           {/* Nombre de personajes */}
           <Rows 
             cardState={tableState} 
@@ -136,23 +131,8 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
             onLabelChecked={onLabelChecked}
           />
         </section>
-  
-        <section className="SUSPECTS w-full h-auto">
-          <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
-            Armas
-          </h2>
-  
-          <Rows 
-            cardState={tableState} 
-            handleCheckOptionState={handleCheckOptionState} 
-            labels={weapons} 
-            numberOfPlayers={numberOfPlayers}
-            section="weapons"
-            onLabelChecked={onLabelChecked}
-          />
-        </section>
-  
-        <section className="SUSPECTS w-full h-auto">
+
+        <section className="PLACES w-full h-auto">
           <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
             Lugares
           </h2>
@@ -167,6 +147,20 @@ export const Table = ({ numberOfPlayers = 6, cluesPerPlayer = 3 }) => {
           />
         </section>
   
+        <section className="WEAPONS w-full h-auto">
+          <h2 className="w-full text-center font-semibold text-white bg-gray-700 p-0.5">
+            Armas
+          </h2>
+  
+          <Rows 
+            cardState={tableState} 
+            handleCheckOptionState={handleCheckOptionState} 
+            labels={weapons} 
+            numberOfPlayers={numberOfPlayers}
+            section="weapons"
+            onLabelChecked={onLabelChecked}
+          />
+        </section>
         
       </div>
       )

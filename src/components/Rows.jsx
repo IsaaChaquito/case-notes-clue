@@ -4,7 +4,7 @@ import { stylesFor } from "../helpers/constants"
 
 export const Rows = ({cardState, handleCheckOptionState, labels, numberOfPlayers, section, onLabelChecked}) => {
 
-  const acumulator = section === "suspects" ? 0 : section === "weapons" ? 6 : 12
+  const acumulator = (section === "suspects") ? 0 : (section === "weapons") ? 6 : 12
 
   return (
     Array.from({ length: labels.length }).map((_, index) => (

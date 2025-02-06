@@ -2,17 +2,21 @@
 import './App.css'
 import { DarkModeButton, Table, Select } from './components'
 import { LogoClueIcon, TrashIcon } from './assets/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Footer } from './components/Footer'
 import { tableObject } from './components'
+import { use } from 'react'
 
 function App() {
 
   const MAX_PLAYERS = 6
-  const MAX_CLUES = 5
+  const MAX_CLUES = 9
 
-  const [numberOfPlayers, setnumberOfPlayers] = useState(6)
-  const [cluesPerPlayer, setcluesPerPlayer] = useState(3)
+  const storedState = localStorage.getItem('tableState')
+  const players = JSON.parse(storedState)?.numberOfPlayers
+  const clues = JSON.parse(storedState)?.cluesPerPlayer
+  const [numberOfPlayers, setnumberOfPlayers] = useState(players || MAX_PLAYERS)
+  const [cluesPerPlayer, setcluesPerPlayer] = useState( clues || MAX_CLUES)
 
   const handleNumberOfPlayers = (e) => {
     setnumberOfPlayers(e.target.value)
@@ -24,19 +28,16 @@ function App() {
 
   const clearLocalStorage = () => {
 
-    // const result = confirm('¿Eliminar los registros de la partida?')
-
     if( !confirm('¿Eliminar los registros de la partida?') ) return
     const keepColorsOrder = confirm('¿Desea conservar el orden de los jugadores?')
 
-
     if( keepColorsOrder ) {
       let tableState = JSON.parse(localStorage.getItem('tableState'))
-      const newTableState = tableObject(numberOfPlayers)
+      const newTableState = tableObject(numberOfPlayers, cluesPerPlayer)
       newTableState.avatarsColorOrder = tableState.avatarsColorOrder
       localStorage.setItem('tableState', JSON.stringify(newTableState ))
     }else{
-      localStorage.setItem('tableState', JSON.stringify(tableObject(numberOfPlayers)))
+      localStorage.setItem('tableState', JSON.stringify(tableObject(MAX_PLAYERS, MAX_CLUES)))
     }
     
     window.location.reload()
@@ -73,7 +74,7 @@ function App() {
       />
 
       <section className='w-full flex my-5 justify-center items-center'>
-        <button onClick={clearLocalStorage} className='flex justify-center items-center text-xs p-2 rounded-full bg-red-800 text-black dark:text-white'>
+        <button onClick={clearLocalStorage} className='flex justify-center items-center text-xs p-2 rounded-full bg-red-800 text-white'>
           Reset
           <TrashIcon className='w-4 h-4'/>
         </button>

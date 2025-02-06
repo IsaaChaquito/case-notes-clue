@@ -29,8 +29,8 @@ export const Avatar = ({ index, cluesPerPlayer = 3, cardState, onAvatarColorChan
   }, [avatarColorIndex])
 
   useEffect(() => {
+
     if (cardState) {
-      console.log(cardState);
       setAvatarColorIndex(cardState.avatarsColorOrder[index])
     }
   }, [])
