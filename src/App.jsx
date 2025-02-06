@@ -2,10 +2,9 @@
 import './App.css'
 import { DarkModeButton, Table, Select } from './components'
 import { LogoClueIcon, TrashIcon } from './assets/icons'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Footer } from './components/Footer'
 import { tableObject } from './components'
-import { use } from 'react'
 
 function App() {
 

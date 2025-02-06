@@ -1,20 +1,21 @@
 
 import { useEffect, useState } from "react"
 import { Avatares, Rows } from "."
-import { LockScreenIcon } from "../assets/icons";
 import { suspects, weapons, places } from "../helpers/constants";
 
-export const tableObject = (cols, cluesPerPlayer) => (
+export const tableObject = (numberOfPlayers, cluesPerPlayer) => (
   {
-    avatarsColorOrder: Array.from({ length: cols }, (_, i) => i),
-    cols: Array.from({ length: cols }, () => ({
+    avatarsColorOrder: Array.from({ length: numberOfPlayers }, (_, i) => i),
+    cols: Array.from({ length: 6 }, () => ({
       rows: Array(21).fill({ iconTypeIndex: 0 }),
     })),
     labelsChecked: Array(21).fill(false),
-    numberOfPlayers: Number(cols),
+    numberOfPlayers: Number(numberOfPlayers),
     cluesPerPlayer,
   }
 );
+
+
 
 
 export const Table = ({ numberOfPlayers, cluesPerPlayer }) => {
@@ -82,6 +83,7 @@ export const Table = ({ numberOfPlayers, cluesPerPlayer }) => {
       const state = JSON.parse(storedCardState)
       state.numberOfPlayers = numberOfPlayers
       state.cluesPerPlayer = cluesPerPlayer
+      console.log({state});
       setTableState(state);
     } else {
       // Si no hay estado guardado, inicializamos con un valor por defecto.
