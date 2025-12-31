@@ -10,7 +10,7 @@ export const Avatar = ({ index, cluesPerPlayer = 3, cardState, onAvatarColorChan
 
   // Count all rows in col[index] when iconTypeIndex === 3, wich means "clue" or check.
   const totalClues = cardState.cols[index]?.rows.reduce((acc, row) => {
-    if (row.iconTypeIndex === 3) {
+    if (row.iconTypeIndex === 4) {
       acc += 1;
     }
     return acc;

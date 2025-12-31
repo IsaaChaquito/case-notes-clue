@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CheckIcon, CloseIcon, QuestionMarkIcon } from '../assets/icons'
+import { CheckIcon, CloseIcon, ExclamationIcon, QuestionMarkIcon } from '../assets/icons'
 
 export const CheckOption = ({ cardState, handleCheckOptionState, rowIndex, colIndex }) => {
   const [selectedOption, setSelectedOption] = useState(0)
@@ -14,14 +14,18 @@ export const CheckOption = ({ cardState, handleCheckOptionState, rowIndex, colIn
       key="question"
       className="w-full h-full text-yellow-500 rounded-full bg-white dark:bg-black"
     />,
+    <ExclamationIcon
+    key="exclamation"
+    className="w-full h-full text-lime-500 bg-white dark:bg-black rounded-full"
+    />,
     <CheckIcon
       key="check"
       className="w-full h-full text-green-500 bg-white dark:bg-black rounded-full"
-    />,
+    />
   ]
 
   const alternateOptions = () => {
-    const nextOption = (selectedOption + 1) > 3 ? 0 : selectedOption + 1
+    const nextOption = (selectedOption + 1) > 4 ? 0 : selectedOption + 1
     setSelectedOption(nextOption)
     handleCheckOptionState(rowIndex, colIndex, nextOption) // Usa `nextOption` directamente
   }
